@@ -1,0 +1,37 @@
+/* app.component.css */
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  padding: 16px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .sidenav {
+    width: 200px;
+  }
+  .mobile-menu {
+    display: inline-flex;
+  }
+}
+
+.theme-toggle {
+  padding: 1rem;
+}
+

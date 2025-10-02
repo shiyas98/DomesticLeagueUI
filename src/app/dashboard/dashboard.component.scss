@@ -1,0 +1,158 @@
+/* General container */
+.container {
+  padding: 16px;
+}
+
+/* Flex / Grid container for cards */
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.grid-item {
+  flex: 1 1 48%; /* Two columns layout, responsive */
+  min-width: 300px;
+}
+
+/* Scrollable card content */
+.scrollable-card {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Spacer for toolbar */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Page header */
+.page-header {
+  margin-bottom: 16px;
+}
+
+.stat-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.stat-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.text-primary { color: #1976d2; }
+.text-success { color: #2e7d32; }
+.text-warning { color: #f9a825; }
+.text-danger { color: #d32f2f; }
+
+.custom-success {
+  color: #2e7d32; /* green success */
+}
+
+
+.dashboard-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Grid for tournaments and favorites */
+.dashboard-content {
+  display: grid;
+  // grid-template-columns: 2fr 1fr; /* Left: tournaments, Right: favorites */
+  gap: 1.5rem;
+}
+
+/* Tournament cards grid */
+/* .tournaments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+ */
+
+ .tournaments-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* default: 1 card per row */
+  gap: 1rem;
+}
+
+/* Tablets (≥768px) */
+@media (min-width: 768px) {
+  .tournaments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktops (≥1024px) */
+@media (min-width: 1024px) {
+  .tournaments-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card styles */
+.tournament-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tournament-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Avatar / logo */
+.tournament-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #ddd;
+}
+
+/* Status colors */
+.status-ongoing {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.status-upcoming {
+  color: #ffc107;
+  font-weight: 600;
+}
+
+.status-completed {
+  color: #6c757d;
+  font-weight: 600;
+}
+
+/* Favorites panel */
+.favorites-panel {
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  min-height: 200px;
+}
+
+
