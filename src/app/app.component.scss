@@ -1,37 +1,262 @@
-/* app.component.css */
+/* ===== MODERN APP LAYOUT STYLES ===== */
 .sidenav-container {
   height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="app-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(102, 126, 234, 0.05)"/><circle cx="10" cy="10" r="0.5" fill="rgba(118, 75, 162, 0.03)"/></pattern></defs><rect width="200" height="200" fill="url(%23app-pattern)"/></svg>');
+    opacity: 0.4;
+    z-index: 0;
+  }
 }
 
 .sidenav {
-  width: 250px;
+  width: 280px;
+  border: none;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+
+  @media (max-width: 1024px) {
+    width: 260px;
+  }
+
+  @media (max-width: 768px) {
+    width: 240px;
+  }
 }
 
-.mat-toolbar.mat-primary {
+/* Main Content Area */
+.mat-sidenav-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  
+  @media (min-width: 1024px) {
+    max-width: calc(100vw - 280px); /* Account for sidebar width on desktop */
+  }
+}
+
+/* Top Toolbar */
+.mat-toolbar {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 100;
+  border: none;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
+/* Content Container */
 .content {
-  padding: 16px;
+  flex: 1;
+  padding: 0;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden;
+  min-height: calc(100vh - 70px); /* Subtract toolbar height */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  
+  /* Custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(102, 126, 234, 0.3);
+    border-radius: 4px;
+    
+    &:hover {
+      background: rgba(102, 126, 234, 0.5);
+    }
+  }
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .sidenav {
-    width: 200px;
+/* Dashboard Specific Styles */
+.container {
+  max-width: 81%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  @media (min-width: 1200px) {
+    max-width: 81%; /* Fixed percentage for consistency */
+    padding: 1rem;
   }
+
+  @media (min-width: 1600px) {
+    max-width: 85%; /* Slightly wider on very large screens */
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 1023px) {
+    max-width: 100%; /* Full width on mobile when sidebar is overlay */
+    padding: 0.5rem;
+  }
+}
+
+/* Page Header Enhancement */
+.page-header {
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 1023px) {
+  .sidenav-container {
+    .sidenav {
+      z-index: 1000;
+    }
+
+    .mat-sidenav-content {
+      margin-left: 0 !important;
+      width: 100% !important;
+    }
+  }
+
+  .content {
+    padding: 0;
+    width: 100%;
+  }
+
+  .container {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
   .mobile-menu {
     display: inline-flex;
   }
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 0.25rem;
+  }
+
+  .page-header {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Theme Toggle */
 .theme-toggle {
   padding: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Loading States */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Smooth Transitions */
+.mat-sidenav,
+.mat-sidenav-content {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus Management */
+.mat-sidenav:focus {
+  outline: none;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .sidenav-container {
+    background: #ffffff;
+    
+    &::before {
+      display: none;
+    }
+  }
+
+  .page-header h1 {
+    color: #000000;
+    -webkit-text-fill-color: #000000;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .mat-sidenav,
+  .mat-sidenav-content,
+  .content {
+    transition: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .sidenav,
+  .mat-toolbar {
+    display: none;
+  }
+
+  .mat-sidenav-content {
+    margin-left: 0;
+  }
+
+  .content {
+    padding: 0;
+  }
 }
 

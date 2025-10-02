@@ -23,6 +23,21 @@ import { TopnavComponent } from './common/topnav/topnav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddtournamentComponent } from './tournament/addtournament/addtournament.component';
+import { SuccessSnackbarComponent } from './common/snackbar/success-snackbar.component';
+import { ErrorSnackbarComponent } from './common/snackbar/error-snackbar.component';
+import { InfoSnackbarComponent } from './common/snackbar/info-snackbar.component';
+import { WarningSnackbarComponent } from './common/snackbar/warning-snackbar.component';
 
 
 @NgModule({
@@ -31,7 +46,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     SidebarComponent,
     TopnavComponent,
     DashboardComponent,
-    TournamentCardComponent
+    TournamentCardComponent,
+    AddtournamentComponent,
+    SuccessSnackbarComponent,
+    ErrorSnackbarComponent,
+    InfoSnackbarComponent,
+    WarningSnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +69,16 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatExpansionModule,
     MatCardModule,
     MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatStepperModule,
+    MatSnackBarModule,
     HttpClientModule,
   ],
   providers: [],

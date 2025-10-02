@@ -1,21 +1,118 @@
-<mat-toolbar color="primary">Menu</mat-toolbar>
+<!-- Modern Sidebar Header -->
+<div class="sidebar-header">
+  <div class="logo-container">
+    <mat-icon class="app-logo">sports_soccer</mat-icon>
+    <div class="app-info">
+      <h3 class="app-title">Domestic</h3>
+      <p class="app-subtitle">League</p>
+    </div>
+  </div>
+</div>
 
-<mat-nav-list>
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Main Category 1</mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-list-item>Sub Category 1</mat-list-item>
-      <mat-list-item>Sub Category 2</mat-list-item>
-    </mat-expansion-panel>
+<!-- Navigation Menu -->
+<nav class="sidebar-nav">
+  <!-- Dashboard -->
+  <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" class="nav-item">
+    <mat-icon class="nav-icon">dashboard</mat-icon>
+    <span class="nav-text">Dashboard</span>
+    <div class="nav-indicator"></div>
+  </a>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Main Category 2</mat-panel-title>
-      </mat-expansion-panel-header>
-      <mat-list-item>Sub Category A</mat-list-item>
-      <mat-list-item>Sub Category B</mat-list-item>
-    </mat-expansion-panel>
-  </mat-accordion>
-</mat-nav-list>
+  <!-- Tournaments Section -->
+  <div class="nav-section">
+    <div class="section-header">
+      <mat-icon class="section-icon">emoji_events</mat-icon>
+      <span class="section-title">Tournaments</span>
+    </div>
+    
+    <a mat-list-item routerLink="/tournaments" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">list</mat-icon>
+      <span class="nav-text">All Tournaments</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+    
+    <a mat-list-item routerLink="/add-tournament" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">add_circle</mat-icon>
+      <span class="nav-text">Create Tournament</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+  </div>
+
+  <!-- Teams Section -->
+  <div class="nav-section">
+    <div class="section-header">
+      <mat-icon class="section-icon">groups</mat-icon>
+      <span class="section-title">Teams</span>
+    </div>
+    
+    <a mat-list-item routerLink="/teams" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">list</mat-icon>
+      <span class="nav-text">All Teams</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+    
+    <a mat-list-item routerLink="/add-team" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">group_add</mat-icon>
+      <span class="nav-text">Add Team</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+  </div>
+
+  <!-- Matches Section -->
+  <div class="nav-section">
+    <div class="section-header">
+      <mat-icon class="section-icon">sports_soccer</mat-icon>
+      <span class="section-title">Matches</span>
+    </div>
+    
+    <a mat-list-item routerLink="/matches" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">schedule</mat-icon>
+      <span class="nav-text">Schedule</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+    
+    <a mat-list-item routerLink="/results" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">assessment</mat-icon>
+      <span class="nav-text">Results</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+  </div>
+
+  <!-- Players Section -->
+  <div class="nav-section">
+    <div class="section-header">
+      <mat-icon class="section-icon">person</mat-icon>
+      <span class="section-title">Players</span>
+    </div>
+    
+    <a mat-list-item routerLink="/players" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">people</mat-icon>
+      <span class="nav-text">All Players</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+    
+    <a mat-list-item routerLink="/add-player" routerLinkActive="active-link" class="nav-item sub-item">
+      <mat-icon class="nav-icon">person_add</mat-icon>
+      <span class="nav-text">Add Player</span>
+      <span class="nav-badge">Soon</span>
+      <div class="nav-indicator"></div>
+    </a>
+  </div>
+
+  <!-- Settings -->
+  <div class="nav-divider"></div>
+  
+  <a mat-list-item routerLink="/settings" routerLinkActive="active-link" class="nav-item">
+    <mat-icon class="nav-icon">settings</mat-icon>
+    <span class="nav-text">Settings</span>
+    <span class="nav-badge">Soon</span>
+    <div class="nav-indicator"></div>
+  </a>
+</nav>

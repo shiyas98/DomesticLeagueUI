@@ -1,0 +1,255 @@
+<div class="container mat-app-background">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <button mat-icon-button (click)="goBack()" class="back-button" matTooltip="Go Back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="header-text">
+        <h1 class="page-title">Create Tournament</h1>
+        <p class="page-subtitle">Set up a new football tournament with teams and settings</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tournament Creation Form -->
+  <div class="tournament-form-container">
+    <form (ngSubmit)="onSubmit()" #tournamentForm="ngForm">
+      
+      <mat-stepper #stepper linear>
+        
+        <!-- Step 1: Tournament Details -->
+        <mat-step label="Tournament Details">
+          <mat-card class="step-card">
+            <mat-card-header>
+              <mat-card-title>
+                <mat-icon class="step-icon">emoji_events</mat-icon>
+                Create Tournament
+              </mat-card-title>
+              <mat-card-subtitle>Enter all the details for your tournament</mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+              <div class="form-grid">
+                <!-- Basic Information Section -->
+                <div class="form-section full-width">
+                  <h3 class="section-title">
+                    <mat-icon>info</mat-icon>
+                    Basic Information
+                  </h3>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Tournament Name</mat-label>
+                  <input matInput [(ngModel)]="tournament.name" name="name" required #nameField="ngModel">
+                  <mat-icon matSuffix>emoji_events</mat-icon>
+                  <mat-error *ngIf="nameField.invalid && nameField.touched">Tournament name is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Organizer</mat-label>
+                  <input matInput [(ngModel)]="tournament.organizer" name="organizer">
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Location</mat-label>
+                  <input matInput [(ngModel)]="tournament.location" name="location">
+                  <mat-icon matSuffix>location_on</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Start Date</mat-label>
+                  <input matInput [matDatepicker]="startPicker" [(ngModel)]="tournament.startDate" name="startDate" required #startDateField="ngModel">
+                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #startPicker></mat-datepicker>
+                  <mat-error *ngIf="startDateField.invalid && startDateField.touched">Start date is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>End Date</mat-label>
+                  <input matInput [matDatepicker]="endPicker" [(ngModel)]="tournament.endDate" name="endDate" required #endDateField="ngModel">
+                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #endPicker></mat-datepicker>
+                  <mat-error *ngIf="endDateField.invalid && endDateField.touched">End date is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Number of Teams</mat-label>
+                  <input matInput type="number" [(ngModel)]="tournament.teamsCount" name="teamsCount" min="2" required #teamsCountField="ngModel">
+                  <mat-icon matSuffix>groups</mat-icon>
+                  <mat-error *ngIf="teamsCountField.invalid && teamsCountField.touched">
+                    <span *ngIf="teamsCountField.errors?.['required']">Number of teams is required</span>
+                    <span *ngIf="teamsCountField.errors?.['min']">Minimum 2 teams required</span>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Description</mat-label>
+                  <textarea matInput [(ngModel)]="tournament.description" name="description" rows="3"></textarea>
+                </mat-form-field>
+
+                <!-- Tournament Settings Section -->
+                <div class="form-section full-width">
+                  <h3 class="section-title">
+                    <mat-icon>settings</mat-icon>
+                    Tournament Settings
+                  </h3>
+                    </div>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Tournament Type</mat-label>
+                  <mat-select [(ngModel)]="tournament.type" name="type">
+                    <mat-option value="league">League</mat-option>
+                    <mat-option value="knockout">Knockout</mat-option>
+                    <mat-option value="group">Group + Knockout</mat-option>
+                    <mat-option value="friendly">Friendly</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>sports_soccer</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Match Duration (minutes)</mat-label>
+                  <input matInput type="number" [(ngModel)]="tournament.matchDuration" name="matchDuration" value="90">
+                  <mat-icon matSuffix>timer</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Visibility</mat-label>
+                  <mat-select [(ngModel)]="tournament.visibility" name="visibility">
+                    <mat-option value="public">Public</mat-option>
+                    <mat-option value="private">Private</mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>visibility</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Points System</mat-label>
+                  <input matInput [(ngModel)]="tournament.pointsSystem" name="pointsSystem" placeholder="Win=3, Draw=1, Loss=0">
+                  <mat-icon matSuffix>calculate</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Admin/Score Keeper Email</mat-label>
+                  <input matInput type="email" [(ngModel)]="tournament.adminEmail" name="adminEmail">
+                  <mat-icon matSuffix>email</mat-icon>
+                </mat-form-field>
+
+                <!-- Logo Upload Section -->
+                <div class="form-section full-width">
+                  <h3 class="section-title">
+                    <mat-icon>image</mat-icon>
+                    Tournament Logo
+                  </h3>
+                                    </div>
+
+                <div class="logo-upload-section full-width">
+                  <div class="logo-preview" *ngIf="logoPreview">
+                    <img [src]="logoPreview" alt="Tournament Logo Preview" class="logo-image">
+                    <button mat-icon-button color="warn" (click)="removeLogo()" class="remove-logo-btn" matTooltip="Remove Logo">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                                        </div>
+                  
+                  <div class="upload-area" [class.has-logo]="logoPreview" (click)="fileInput.click()">
+                    <input #fileInput type="file" accept="image/*" (change)="onLogoUpload($event)" style="display: none;">
+                    <div class="upload-content" *ngIf="!logoPreview">
+                      <mat-icon class="upload-icon">cloud_upload</mat-icon>
+                      <p class="upload-text">Click to upload tournament logo</p>
+                      <p class="upload-hint">PNG, JPG up to 5MB</p>
+                                        </div>
+                    <div class="upload-overlay" *ngIf="logoPreview">
+                      <mat-icon>edit</mat-icon>
+                      <span>Change Logo</span>
+                                        </div>
+                                    </div>
+                                        </div>
+                                    </div>
+            </mat-card-content>
+            
+            <mat-card-actions align="end">
+              <button mat-raised-button color="primary" matStepperNext [disabled]="!isFormValid()">
+                Review & Create
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-step>
+
+        <!-- Step 2: Review & Submit -->
+        <mat-step label="Review">
+          <mat-card class="step-card">
+            <mat-card-header>
+              <mat-card-title>
+                <mat-icon class="step-icon">preview</mat-icon>
+                Review Tournament Details
+              </mat-card-title>
+              <mat-card-subtitle>Please review all information before creating the tournament</mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content>
+              <div class="review-section">
+                <div class="review-group">
+                  <h3>Basic Information</h3>
+                  <div class="review-item" *ngIf="logoPreview">
+                    <span class="label">Logo:</span>
+                    <img [src]="logoPreview" alt="Tournament Logo" class="review-logo">
+                                        </div>
+                  <div class="review-item">
+                    <span class="label">Tournament Name:</span>
+                    <span class="value">{{ tournament.name }}</span>
+                                        </div>
+                  <div class="review-item">
+                    <span class="label">Organizer:</span>
+                    <span class="value">{{ tournament.organizer }}</span>
+                                        </div>
+                  <div class="review-item">
+                    <span class="label">Location:</span>
+                    <span class="value">{{ tournament.location }}</span>
+                                    </div>
+                  <div class="review-item">
+                    <span class="label">Duration:</span>
+                    <span class="value">{{ tournament.startDate | date }} - {{ tournament.endDate | date }}</span>
+                                        </div>
+                  <div class="review-item">
+                    <span class="label">Visibility:</span>
+                    <span class="value">{{ tournament.visibility | titlecase }}</span>
+                                        </div>
+                                    </div>
+
+                <div class="review-group">
+                  <h3>Tournament Settings</h3>
+                  <div class="review-item">
+                    <span class="label">Type:</span>
+                    <span class="value">{{ tournament.type | titlecase }}</span>
+                  </div>
+                  <div class="review-item">
+                    <span class="label">Teams:</span>
+                    <span class="value">{{ tournament.teamsCount }}</span>
+                                    </div>
+                  <div class="review-item">
+                    <span class="label">Match Duration:</span>
+                    <span class="value">{{ tournament.matchDuration }} minutes</span>
+                            </div>
+                  <div class="review-item" *ngIf="tournament.pointsSystem">
+                    <span class="label">Points System:</span>
+                    <span class="value">{{ tournament.pointsSystem }}</span>
+                        </div>
+                    </div>
+
+            </div>
+            </mat-card-content>
+            
+            <mat-card-actions align="end">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!tournamentForm.form.valid">
+                <mat-icon>check_circle</mat-icon>
+                Create Tournament
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-step>
+
+      </mat-stepper>
+    </form>
+        </div>
+    </div>

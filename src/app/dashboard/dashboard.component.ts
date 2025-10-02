@@ -5,6 +5,7 @@ import { TournamentItem, TournamentWebResponse } from '../models/tournamentweb';
 import { TournamentService } from '../core/services/tournament.service';
 import { UserSessionService } from '../core/services/user-session.service';
 import { UserData } from '../models/user.model';
+import { UtilService } from '../core/services/util.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -58,7 +59,7 @@ filteredTournaments: TournamentItem[] = [];
 
 
   constructor(private tournamentService: TournamentService, private userSessionService: UserSessionService
-    , private router: Router
+    , private router: Router, private utilService: UtilService
   ) { }
 
   ngOnInit(): void {
@@ -132,5 +133,26 @@ filteredTournaments: TournamentItem[] = [];
 
   addMatch(id: number) {
     this.router.navigate(['/tournament', id, 'add-match']);
+  }
+
+  getOngoingCount(): number {
+    return this.filteredTournaments?.filter(t => t.status === 'Ongoing').length || 0;
+  }
+
+  // Test methods for Material Snackbar
+  testSuccessSnackbar() {
+    this.utilService.showSuccess('Tournament created successfully!', 'Success');
+  }
+
+  testErrorSnackbar() {
+    this.utilService.showError('Something went wrong while creating the tournament.', 'Error');
+  }
+
+  testInfoSnackbar() {
+    this.utilService.showInfo('This is an informational message about the system.', 'Information');
+  }
+
+  testWarningSnackbar() {
+    this.utilService.showWarning('Please check your tournament settings before proceeding.', 'Warning');
   }
 }

@@ -1,0 +1,452 @@
+/* ===== MODERN TOP NAVIGATION STYLES ===== */
+.modern-toolbar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1.5rem;
+  min-height: 70px;
+  height: 70px;
+  position: relative;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="topnav-pattern" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23topnav-pattern)"/></svg>');
+    opacity: 0.3;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  margin-right: 1rem;
+  color: white;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+/* Title Section */
+.nav-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  .app-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+
+    .breadcrumb-item {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .breadcrumb-separator {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .breadcrumb-current {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .app-title {
+      font-size: 1.2rem;
+    }
+
+    .breadcrumb {
+      display: none;
+    }
+  }
+}
+
+/* Spacer */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Search Container */
+.search-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 2rem;
+  height: 100%;
+  
+  .search-field {
+    width: 100%;
+    max-width: 400px;
+    
+    ::ng-deep .mat-mdc-form-field {
+      height: 48px;
+      line-height: 48px;
+    }
+    
+    ::ng-deep .mat-mdc-form-field-wrapper {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      height: 48px;
+      padding: 0;
+    }
+
+    ::ng-deep .mat-mdc-form-field-outline {
+      display: none;
+    }
+
+    ::ng-deep .mat-mdc-form-field-infix {
+      padding: 0 1rem;
+      border: none;
+      display: flex;
+      align-items: center;
+      height: 48px;
+      min-height: 48px;
+      border-top: none;
+    }
+
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    ::ng-deep .mat-mdc-form-field-bottom-align::before {
+      display: none;
+    }
+
+    ::ng-deep .mat-mdc-text-field-wrapper {
+      height: 48px;
+      border-radius: 25px;
+    }
+
+    ::ng-deep .mat-mdc-form-field-flex {
+      height: 48px;
+      align-items: center;
+    }
+
+    .search-input {
+      color: white;
+      font-size: 0.9rem;
+      height: 100%;
+      line-height: normal;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+
+    .search-icon {
+      color: rgba(255, 255, 255, 0.7);
+      margin-right: 0.5rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+
+  &.notification-btn {
+    ::ng-deep .mat-badge-content {
+      background: #ff5722;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+  }
+
+  &.message-btn {
+    ::ng-deep .mat-badge-content {
+      background: #e91e63;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Profile Button */
+.profile-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center;
+  flex-direction: row !important;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  transition: all 0.3s ease;
+  margin-left: 0.5rem;
+  height: 48px;
+  min-width: fit-content;
+  line-height: 1;
+  
+  // Override Material button defaults
+  ::ng-deep .mat-button-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    gap: 0.5rem;
+    line-height: 1;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    
+    mat-icon {
+      font-size: 1.6rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1;
+      vertical-align: middle;
+    }
+  }
+
+  .profile-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .dropdown-icon {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: transform 0.3s ease;
+    line-height: 1;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  &[aria-expanded="true"] .dropdown-icon {
+    transform: rotate(180deg);
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem;
+    gap: 0.25rem;
+    
+    .profile-name {
+      display: none;
+    }
+    
+    .dropdown-icon {
+      display: none;
+    }
+  }
+}
+
+/* Modern Menu Styles */
+::ng-deep .modern-menu {
+  .mat-mdc-menu-panel {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+
+  .mat-mdc-menu-item {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 0.25rem;
+
+    &:hover {
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      transform: translateX(4px);
+    }
+
+    mat-icon {
+      margin-right: 0.75rem;
+      color: #667eea;
+    }
+
+    span {
+      font-weight: 500;
+      color: #2d3748;
+    }
+  }
+}
+
+/* Profile Menu Specific Styles */
+::ng-deep .profile-menu {
+  .mat-mdc-menu-panel {
+    min-width: 280px;
+  }
+}
+
+.profile-header-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+
+  .profile-avatar-large {
+    mat-icon {
+      //font-size: 3rem;
+      color: white;
+    }
+  }
+
+  .profile-details {
+    h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0.25rem 0 0 0;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+.logout-item {
+  color: #e53e3e !important;
+
+  mat-icon {
+    color: #e53e3e !important;
+  }
+
+  &:hover {
+    background: rgba(229, 62, 62, 0.1) !important;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modern-toolbar {
+    padding: 0 1rem;
+    min-height: 60px;
+  }
+
+  .nav-title-section {
+    .app-title {
+      font-size: 1.2rem;
+    }
+  }
+
+  .action-buttons {
+    gap: 0.25rem;
+  }
+
+  .action-btn {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-toolbar {
+    padding: 0 0.5rem;
+  }
+
+  .nav-title-section {
+    .app-title {
+      font-size: 1rem;
+    }
+  }
+
+  .action-buttons {
+    .action-btn:not(.profile-btn) {
+      display: none;
+    }
+  }
+}
+
+/* Animation for smooth interactions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+::ng-deep .modern-menu .mat-mdc-menu-panel {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+.action-btn:focus,
+.profile-btn:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}

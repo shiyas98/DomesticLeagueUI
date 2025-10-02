@@ -1,6 +1,10 @@
 <mat-sidenav-container class="sidenav-container">
   <!-- Sidebar -->
-  <mat-sidenav #drawer class="sidenav" mode="side" [opened]="true" fixedInViewport>
+  <mat-sidenav #drawer 
+               class="sidenav" 
+               [mode]="isDesktop ? 'side' : 'over'" 
+               [opened]="isDesktop" 
+               [fixedInViewport]="true">
     <app-sidebar></app-sidebar>
   </mat-sidenav>
 

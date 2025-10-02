@@ -7,130 +7,257 @@
         <h1>Dashboard</h1>
       </div>
 
-      <!-- Stat Cards -->
-<div class="stat-cards-container">
-  <!-- Tournaments -->
-  <mat-card class="stat-card">
-    <mat-card-content class="text-center">
-      <!-- <mat-icon class="stat-icon text-primary">emoji_events</mat-icon> -->
-       <mat-icon color="primary">emoji_events</mat-icon>
-      <h3><strong>{{ dashboardResponse?.tournamentCount }}</strong></h3>
-      <p class="text-muted">Tournaments</p>
-    </mat-card-content>
-  </mat-card>
-
-  <!-- Matches -->
-  <mat-card class="stat-card">
-    <mat-card-content class="text-center">
-      <!-- <mat-icon class="stat-icon text-success">event</mat-icon> -->
-        <mat-icon color="accent">event</mat-icon>
-      <h3><strong>{{ dashboardResponse?.totalMatchCount }}</strong></h3>
-      <p class="text-muted">Matches</p>
-    </mat-card-content>
-  </mat-card>
-
-  <!-- Teams -->
-  <mat-card class="stat-card">
-    <mat-card-content class="text-center">
-      <!-- <mat-icon class="stat-icon text-warning">groups</mat-icon> -->
-      <mat-icon color="warn">groups</mat-icon>
-      <h3><strong>{{ dashboardResponse?.totalTeamCount }}</strong></h3>
-      <p class="text-muted">Teams</p>
-    </mat-card-content>
-  </mat-card>
-
-  <!-- Players -->
-  <mat-card class="stat-card">
-    <mat-card-content class="text-center">
-      <!-- <mat-icon class="stat-icon text-danger">person</mat-icon> -->
-      <mat-icon class="custom-success">person</mat-icon>
-      <h3><strong>{{ dashboardResponse?.totalPlayerCount }}</strong></h3>
-      <p class="text-muted">Players</p>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-
-      <!-- Tournaments / Favorites -->
-     <div class="dashboard-container">
-
-  <!-- Header -->
-  <div class="dashboard-header">
-    <h4>Your Tournaments</h4>
-    <button mat-raised-button color="primary" routerLink="/add-tournament">+ New Tournament</button>
-  </div>
-
- <!--  
-  <mat-form-field appearance="outline" class="w-100 mb-4">
-    <mat-label>Search by tournament name</mat-label>
-    <input matInput [(ngModel)]="searchTerm" (ngModelChange)="filterTournaments()" />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field> -->
-
-  <div class="dashboard-content">
-    <!-- Tournament Cards -->
-    <div class="tournaments-grid">
-      <mat-card *ngFor="let t of filteredTournaments | slice:0:12" class="tournament-card" (click)="goToTournament(t.tid)">
-        <mat-card-header>
-          <div mat-card-avatar class="tournament-logo" [style.background-image]="'url(' + (t.logo ? t.logo : 'assets/img/teamlogo.png') + ')'"></div>
-          <mat-card-title>{{ t.name }}</mat-card-title>
-          <mat-card-subtitle>
-            Status: 
-            <span [ngClass]="{
-              'status-ongoing': t.status === 'Ongoing',
-              'status-upcoming': t.status === 'Upcoming',
-              'status-completed': t.status === 'Completed'
-            }">{{ t.status }}</span>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <p class="small text-muted">
-            Teams: {{ t.teamscount }} | Matches: {{ t.matchesCount }}
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-stroked-button color="primary" (click)="$event.stopPropagation(); viewTournament(t.tid)">View</button>
-          <button mat-stroked-button color="accent" (click)="$event.stopPropagation(); addMatch(t.tid)">Add Match</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-
-    <!-- Favorites Placeholder -->
-    <!-- <div class="favorites-panel">
-      <h5>Favorites</h5>
-      <p>No favorites available</p>
-    </div> -->
-  </div>
-
-</div>
-
-      <!-- Progress / Illustrations -->
-      <div class="grid-container" style="margin-top: 16px;">
-        <!-- Projects -->
-        <mat-card class="grid-item">
-          <mat-card-header>
-            <mat-card-title>Projects</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div *ngFor="let project of projects" style="margin-bottom: 12px;">
-              <h4>{{project.name}} <span class="float-right">{{project.progressLabel}}</span></h4>
-              <mat-progress-bar [value]="project.progress" color="{{project.color}}"></mat-progress-bar>
-            </div>
-          </mat-card-content>
-        </mat-card>
-
-        <!-- Illustrations -->
-        <mat-card class="grid-item">
-          <mat-card-header>
-            <mat-card-title>Illustrations</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="text-center">
-            <img class="img-fluid" [src]="'assets/img/undraw_posting_photo.svg'" alt="Illustration" style="max-width: 100%;">
-            <p>Add quality SVG illustrations from <a href="https://undraw.co/" target="_blank">unDraw</a>.</p>
-          </mat-card-content>
-        </mat-card>
+      <!-- Snackbar Test Buttons (Temporary for testing) -->
+      <div class="test-buttons" style="margin: 1rem 0; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <button mat-raised-button color="primary" (click)="testSuccessSnackbar()">
+          <mat-icon>check_circle</mat-icon>
+          Test Success
+        </button>
+        <button mat-raised-button color="warn" (click)="testErrorSnackbar()">
+          <mat-icon>error</mat-icon>
+          Test Error
+        </button>
+        <button mat-raised-button color="accent" (click)="testInfoSnackbar()">
+          <mat-icon>info</mat-icon>
+          Test Info
+        </button>
+        <button mat-raised-button style="background: #FF9800; color: white;" (click)="testWarningSnackbar()">
+          <mat-icon>warning</mat-icon>
+          Test Warning
+        </button>
       </div>
 
+      <!-- Enhanced Stats Overview -->
+      <div class="stats-overview-section">
+        <div class="overview-header">
+          <div class="header-content">
+            <mat-icon class="section-icon">analytics</mat-icon>
+            <div class="header-text">
+              <h2 class="section-title">Dashboard Overview</h2>
+              <p class="section-subtitle">Your football management statistics at a glance</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modern-stats-grid">
+          <!-- Tournaments Card -->
+          <mat-card class="modern-stat-card tournaments-card" matRipple>
+            <div class="stat-card-header">
+              <div class="stat-icon-container tournaments-bg">
+                <mat-icon class="stat-icon">emoji_events</mat-icon>
+              </div>
+              <div class="stat-trend">
+                <mat-icon class="trend-icon positive">trending_up</mat-icon>
+              </div>
+            </div>
+            <div class="stat-content">
+              <h3 class="stat-number">{{ dashboardResponse?.tournamentCount || 0 }}</h3>
+              <p class="stat-label">Tournaments</p>
+              <div class="stat-progress">
+                <mat-progress-bar mode="determinate" [value]="75" color="primary"></mat-progress-bar>
+                <span class="progress-text">Active: {{ getOngoingCount() }}</span>
+              </div>
+            </div>
+          </mat-card>
+
+          <!-- Matches Card -->
+          <mat-card class="modern-stat-card matches-card" matRipple>
+            <div class="stat-card-header">
+              <div class="stat-icon-container matches-bg">
+                <mat-icon class="stat-icon">sports_soccer</mat-icon>
+              </div>
+              <div class="stat-trend">
+                <mat-icon class="trend-icon positive">trending_up</mat-icon>
+              </div>
+            </div>
+            <div class="stat-content">
+              <h3 class="stat-number">{{ dashboardResponse?.totalMatchCount || 0 }}</h3>
+              <p class="stat-label">Matches</p>
+              <div class="stat-progress">
+                <mat-progress-bar mode="determinate" [value]="60" color="accent"></mat-progress-bar>
+                <span class="progress-text">This month</span>
+              </div>
+            </div>
+          </mat-card>
+
+          <!-- Teams Card -->
+          <mat-card class="modern-stat-card teams-card" matRipple>
+            <div class="stat-card-header">
+              <div class="stat-icon-container teams-bg">
+                <mat-icon class="stat-icon">groups</mat-icon>
+              </div>
+              <div class="stat-trend">
+                <mat-icon class="trend-icon positive">trending_up</mat-icon>
+              </div>
+            </div>
+            <div class="stat-content">
+              <h3 class="stat-number">{{ dashboardResponse?.totalTeamCount || 0 }}</h3>
+              <p class="stat-label">Teams</p>
+              <div class="stat-progress">
+                <mat-progress-bar mode="determinate" [value]="85" color="warn"></mat-progress-bar>
+                <span class="progress-text">Registered</span>
+              </div>
+            </div>
+          </mat-card>
+
+          <!-- Players Card -->
+          <mat-card class="modern-stat-card players-card" matRipple>
+            <div class="stat-card-header">
+              <div class="stat-icon-container players-bg">
+                <mat-icon class="stat-icon">person</mat-icon>
+              </div>
+              <div class="stat-trend">
+                <mat-icon class="trend-icon positive">trending_up</mat-icon>
+              </div>
+            </div>
+            <div class="stat-content">
+              <h3 class="stat-number">{{ dashboardResponse?.totalPlayerCount || 0 }}</h3>
+              <p class="stat-label">Players</p>
+              <div class="stat-progress">
+                <mat-progress-bar mode="determinate" [value]="92" class="success-progress"></mat-progress-bar>
+                <span class="progress-text">Active</span>
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+
+
+      <!-- Tournaments Section -->
+     <div class="tournaments-section">
+
+  <!-- Section Header -->
+  <div class="section-header">
+    <div class="header-content">
+      <mat-icon class="section-icon">emoji_events</mat-icon>
+      <div class="header-text">
+        <h2 class="section-title">Your Tournaments</h2>
+        <p class="section-subtitle">Manage and track your tournament progress</p>
+      </div>
+    </div>
+    <button mat-fab color="primary" routerLink="/add-tournament" matTooltip="Create New Tournament" class="fab-button">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <!-- Search and Filter Bar -->
+  <div class="search-filter-bar">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search tournaments</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (ngModelChange)="filterTournaments()" placeholder="Type to search...">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    
+    <div class="tournament-stats">
+      <mat-chip-listbox class="stats-chips">
+        <mat-chip-option class="stat-chip">
+          <mat-icon>emoji_events</mat-icon>
+          {{ dashboardResponse?.tournamentCount || 0 }} Total
+        </mat-chip-option>
+        <mat-chip-option class="stat-chip">
+          <mat-icon>schedule</mat-icon>
+          {{ getOngoingCount() }} Active
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+  </div>
+
+  <!-- Tournament Cards Grid -->
+  <div class="tournaments-grid">
+    <mat-card *ngFor="let t of filteredTournaments | slice:0:12" 
+              class="tournament-card" 
+              matRipple 
+              [matRippleColor]="'rgba(63, 81, 181, 0.1)'"
+              (click)="goToTournament(t.tid)">
+      
+      <!-- Card Header with Enhanced Design -->
+      <div class="card-header-custom">
+        <div class="tournament-avatar-container">
+          <div class="tournament-logo" [style.background-image]="'url(' + (t.logo ? t.logo : 'assets/img/teamlogo.png') + ')'">
+            <div class="logo-overlay"></div>
+          </div>
+          <div class="status-indicator" [ngClass]="{
+            'status-ongoing': t.status === 'Ongoing',
+            'status-upcoming': t.status === 'Upcoming',
+            'status-completed': t.status === 'Completed'
+          }"></div>
+        </div>
+        
+        <div class="tournament-info">
+          <h3 class="tournament-title" [matTooltip]="t.name">{{ t.name }}</h3>
+          <div class="status-chip-container">
+            <mat-chip class="status-chip" [ngClass]="{
+              'chip-ongoing': t.status === 'Ongoing',
+              'chip-upcoming': t.status === 'Upcoming',
+              'chip-completed': t.status === 'Completed'
+            }">
+              <mat-icon class="status-icon">
+                {{ t.status === 'Ongoing' ? 'play_circle' : t.status === 'Upcoming' ? 'schedule' : 'check_circle' }}
+              </mat-icon>
+              {{ t.status }}
+            </mat-chip>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Content with Statistics -->
+      <mat-card-content class="tournament-stats-content">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <mat-icon class="stat-icon">groups</mat-icon>
+            <div class="stat-details">
+              <span class="stat-number">{{ t.teamscount || 0 }}</span>
+              <span class="stat-label">Teams</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <mat-icon class="stat-icon">sports_soccer</mat-icon>
+            <div class="stat-details">
+              <span class="stat-number">{{ t.matchesCount || 0 }}</span>
+              <span class="stat-label">Matches</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <!-- Enhanced Action Buttons -->
+      <mat-card-actions class="card-actions-custom">
+        <button mat-button 
+                color="primary" 
+                class="action-btn primary-action"
+                (click)="$event.stopPropagation(); viewTournament(t.tid)"
+                matTooltip="View Tournament Details">
+          <mat-icon>visibility</mat-icon>
+          View
+        </button>
+        <button mat-button 
+                color="accent" 
+                class="action-btn secondary-action"
+                (click)="$event.stopPropagation(); addMatch(t.tid)"
+                matTooltip="Add New Match">
+          <mat-icon>add_circle</mat-icon>
+          Add Match
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="filteredTournaments?.length === 0" class="empty-state">
+    <mat-icon class="empty-icon">emoji_events</mat-icon>
+    <h3 class="empty-title">No tournaments found</h3>
+    <p class="empty-subtitle">
+      {{ searchTerm ? 'Try adjusting your search terms' : 'Create your first tournament to get started' }}
+    </p>
+    <button *ngIf="!searchTerm" mat-raised-button color="primary" routerLink="/add-tournament">
+      <mat-icon>add</mat-icon>
+      Create Tournament
+    </button>
+  </div>
+
+</div>
+
+     
     </div>
 
 

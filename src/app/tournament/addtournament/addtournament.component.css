@@ -1,0 +1,521 @@
+/* Add Tournament Component - Modern Material Design */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-attachment: fixed;
+}
+
+.mat-app-background {
+  background: transparent !important;
+}
+
+/* Page Header */
+.page-header {
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-button {
+  background: rgba(103, 126, 234, 0.1);
+  color: #677eea;
+  border: 1px solid rgba(103, 126, 234, 0.2);
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(103, 126, 234, 0.2);
+  transform: translateX(-2px);
+}
+
+.header-text {
+  flex: 1;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-subtitle {
+  margin: 0.5rem 0 0 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Tournament Form Container */
+.tournament-form-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Stepper Styling */
+::ng-deep .mat-stepper-horizontal {
+  background: transparent;
+}
+
+::ng-deep .mat-step-header {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  margin: 0 0.5rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+::ng-deep .mat-step-header:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50%;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+::ng-deep .mat-step-label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Step Cards */
+.step-card {
+  margin: 2rem 0;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+}
+
+.step-card mat-card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px 16px 0 0;
+  padding: 1.5rem 2rem;
+  margin: -1px -1px 0 -1px;
+}
+
+.step-card mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.step-icon {
+  font-size: 1.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.step-card mat-card-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.5rem 0 0 0;
+}
+
+.step-card mat-card-content {
+  padding: 2rem;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* Form Sections */
+.form-section {
+  margin: 2rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(103, 126, 234, 0.1);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.section-title mat-icon {
+  font-size: 1.3rem;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+/* Logo Upload Section */
+.logo-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.logo-preview {
+  position: relative;
+  display: inline-block;
+  max-width: 200px;
+}
+
+.logo-image {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(103, 126, 234, 0.2);
+}
+
+.remove-logo-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f44336;
+  color: white;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+}
+
+.remove-logo-btn:hover {
+  background: #d32f2f;
+  transform: scale(1.1);
+}
+
+.upload-area {
+  position: relative;
+  border: 2px dashed rgba(103, 126, 234, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(103, 126, 234, 0.02);
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-area:hover {
+  border-color: rgba(103, 126, 234, 0.5);
+  background: rgba(103, 126, 234, 0.05);
+  transform: translateY(-2px);
+}
+
+.upload-area.has-logo {
+  min-height: 60px;
+  padding: 1rem;
+}
+
+.upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+}
+
+.upload-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.upload-hint {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0;
+}
+
+.upload-overlay {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.upload-overlay mat-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Review Logo */
+.review-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid rgba(103, 126, 234, 0.2);
+}
+
+/* Form Fields */
+::ng-deep .mat-mdc-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-form-field-outline {
+  border-radius: 12px;
+}
+
+::ng-deep .mat-mdc-form-field-focus-overlay {
+  border-radius: 12px;
+}
+
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  border-color: #667eea;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label--float-above {
+  color: #667eea;
+}
+
+
+/* Review Section */
+.review-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.review-group {
+  background: rgba(103, 126, 234, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(103, 126, 234, 0.1);
+}
+
+.review-group h3 {
+  margin: 0 0 1rem 0;
+  color: #667eea;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(103, 126, 234, 0.1);
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-item .label {
+  font-weight: 500;
+  color: #666;
+}
+
+.review-item .value {
+  font-weight: 600;
+  color: #333;
+}
+
+
+/* Card Actions */
+::ng-deep .mat-mdc-card-actions {
+  padding: 1.5rem 2rem;
+  background: rgba(248, 249, 250, 0.8);
+  border-radius: 0 0 16px 16px;
+  margin: 0 -1px -1px -1px;
+}
+
+/* Buttons */
+::ng-deep .mat-mdc-raised-button {
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  text-transform: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+::ng-deep .mat-mdc-raised-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+::ng-deep .mat-mdc-raised-button.mat-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+::ng-deep .mat-mdc-raised-button.mat-accent {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+::ng-deep .mat-mdc-button {
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  text-transform: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .page-header {
+    padding: 1rem;
+  }
+  
+  .tournament-form-container {
+    padding: 1rem;
+  }
+  
+  .step-card mat-card-content {
+    padding: 1rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  
+  .review-section {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .review-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .page-title {
+    font-size: 1.5rem;
+  }
+  
+  ::ng-deep .mat-step-header {
+    margin: 0 0.25rem;
+    padding: 0.75rem;
+  }
+
+  /* Mobile logo upload adjustments */
+  .upload-area {
+    min-height: 120px;
+    padding: 1.5rem;
+  }
+  
+  .upload-icon {
+    font-size: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .logo-image {
+    max-width: 150px;
+  }
+  
+  .form-section {
+    margin: 1.5rem 0 0.75rem 0;
+  }
+  
+  .section-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .back-button {
+    align-self: flex-start;
+  }
+}
+
+/* Loading and Animation States */
+.step-card {
+  animation: slideInUp 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus and Accessibility */
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-form-field-outline-thick {
+  border-width: 2px;
+}
+
+::ng-deep .mat-mdc-button:focus,
+::ng-deep .mat-mdc-raised-button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Datepicker Styling */
+::ng-deep .mat-datepicker-toggle {
+  color: #667eea;
+}
+
+::ng-deep .mat-datepicker-content {
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}

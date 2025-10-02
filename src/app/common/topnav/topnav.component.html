@@ -1,33 +1,95 @@
-<mat-toolbar color="primary">
-  <!-- Hamburger for mobile -->
-  <button mat-icon-button (click)="toggleSidenav.emit()" class="mobile-menu">
+<mat-toolbar class="modern-toolbar">
+  <!-- Mobile Menu Toggle -->
+  <button mat-icon-button (click)="toggleSidenav.emit()" class="mobile-menu-btn">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <span class="app-name">Football Scorecard</span>
-  <span class="spacer"></span>
+  <!-- App Title with Breadcrumb -->
+  <div class="nav-title-section">
+    <h1 class="app-title">Domestic League</h1>
+    <div class="breadcrumb">
+      <span class="breadcrumb-item">Dashboard</span>
+      <mat-icon class="breadcrumb-separator">chevron_right</mat-icon>
+      <span class="breadcrumb-current">Overview</span>
+    </div>
+  </div>
 
-  <!-- Badges -->
-  <button mat-icon-button matBadge="3" matBadgeColor="warn">
-    <mat-icon>notifications</mat-icon>
-  </button>
+  <!-- Search Bar -->
+  <div class="search-container">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-icon matPrefix class="search-icon">search</mat-icon>
+      <input matInput placeholder="Search tournaments, teams..." class="search-input">
+    </mat-form-field>
+  </div>
 
-  <button mat-icon-button matBadge="5" matBadgeColor="accent">
-    <mat-icon>message</mat-icon>
-  </button>
-
-  <!-- Profile menu -->
-  <button mat-icon-button [matMenuTriggerFor]="profileMenu">
-    <mat-icon>account_circle</mat-icon>
-  </button>
-  <mat-menu #profileMenu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>person</mat-icon>
-      <span>Profile</span>
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <!-- Quick Add -->
+    <button mat-icon-button [matMenuTriggerFor]="quickAddMenu" class="action-btn" matTooltip="Quick Add">
+      <mat-icon>add_circle</mat-icon>
     </button>
-    <button mat-menu-item>
-      <mat-icon>logout</mat-icon>
-      <span>Logout</span>
+    <mat-menu #quickAddMenu="matMenu" class="modern-menu">
+      <button mat-menu-item routerLink="/add-tournament">
+        <mat-icon>emoji_events</mat-icon>
+        <span>New Tournament</span>
+      </button>
+      <button mat-menu-item routerLink="/add-team">
+        <mat-icon>groups</mat-icon>
+        <span>New Team</span>
+      </button>
+      <button mat-menu-item routerLink="/add-match">
+        <mat-icon>sports_soccer</mat-icon>
+        <span>New Match</span>
+      </button>
+    </mat-menu>
+
+    <!-- Notifications -->
+    <button mat-icon-button matBadge="3" matBadgeColor="warn" class="action-btn notification-btn" matTooltip="Notifications">
+      <mat-icon>notifications</mat-icon>
     </button>
-  </mat-menu>
+
+    <!-- Messages -->
+    <button mat-icon-button matBadge="5" matBadgeColor="accent" class="action-btn message-btn" matTooltip="Messages">
+      <mat-icon>message</mat-icon>
+    </button>
+
+    <!-- Profile Menu -->
+    <button mat-button [matMenuTriggerFor]="profileMenu" class="profile-btn">
+      <div class="profile-avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <span class="profile-name">John Doe</span>
+      <mat-icon class="dropdown-icon">keyboard_arrow_down</mat-icon>
+    </button>
+    
+    <mat-menu #profileMenu="matMenu" class="modern-menu profile-menu">
+      <div class="profile-header-menu">
+        <div class="profile-avatar-large">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <div class="profile-details">
+          <h4>John Doe</h4>
+          <p>john.doe&#64;example.com</p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>My Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>help</mat-icon>
+        <span>Help & Support</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item class="logout-item">
+        <mat-icon>logout</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    </mat-menu>
+  </div>
 </mat-toolbar>
